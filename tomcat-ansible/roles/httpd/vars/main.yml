@@ -1,0 +1,6 @@
+---
+ubuntu_packages:
+  - apache2
+  - vim
+  - wget
+  - git

@@ -1,0 +1,5 @@
+packages:
+  - httpd
+  - vim
+  - wget
+  - git

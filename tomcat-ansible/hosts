@@ -1,0 +1,10 @@
+[tomcat_svrs]
+3.86.149.142 ansible_user=ec2-user ansible_ssh_private_key_file=/home/ansible/ansible.pem
+100.26.183.97 ansible_user=ec2-user ansible_ssh_private_key_file=/home/ansible/ansible.pem
+54.197.69.178 ansible_user=ec2-user ansible_ssh_private_key_file=/home/ansible/ansible.pem
+
+[web_svrs]
+34.201.128.24 ansible_user=ec2-user ansible_ssh_private_key_file=/home/ansible/ansible.pem
+3.84.18.208 ansible_user=ec2-user ansible_ssh_private_key_file=/home/ansible/ansible.pem
+44.201.143.49 ansible_user=ec2-user ansible_ssh_private_key_file=/home/ansible/ansible.pem
+3.87.226.232  ansible_user=ubuntu ansible_ssh_private_key_file=/home/ansible/ansible.pem

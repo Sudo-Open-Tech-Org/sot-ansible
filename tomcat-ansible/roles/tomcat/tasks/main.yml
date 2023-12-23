@@ -1,0 +1,42 @@
+---
+- name: Include the apache task
+  include_tasks: httpd.yml
+
+- name: include the apache role
+  include_role:
+    name: httpd
+
+- name: install 0-openjdk-devel
+  dnf:
+    name: "{{ java_package }}"
+    state: present
+
+- name: Install wget
+  dnf:
+    name: wget
+    state: present
+
+- name: Download the tomcate archieve
+  get_url:
+    url: "{{ tomcat_url }}"
+    dest: /usr/local
+
+- name: unarchive tomcat tar ball
+  unarchive:
+    src: /usr/local/apache-tomcat-9.0.83.tar.gz
+    dest: /usr/local
+    remote_src: yes
+
+- name: export the CATALINA_HOME variable
+  lineinfile:
+    path: ~/.bashrc
+    line: export CATALINA_HOME="/usr/local/apache-tomcat-9.0.83"
+    create: yes
+
+- name: source the bashrc file
+  shell: source ~/.bashrc
+
+- name: execute the apache startup script
+  command: /usr/local/apache-tomcat-9.0.83/bin/startup.sh
+  async: 60
+  poll: 0

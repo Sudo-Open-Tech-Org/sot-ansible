@@ -1,0 +1,40 @@
+---
+- name: install apache
+  dnf:
+    name: "{{ item }}"
+    state: present
+  ignore_errors: yes
+  with_items: "{{ packages }}"
+  when: ansible_distribution == 'RedHat'
+
+- name: install apache
+  apt:
+    name: "{{ item }}"
+    state: present
+  ignore_errors: yes
+  with_items: "{{ ubuntu_packages }}"
+  when: ansible_distribution == 'Ubuntu'
+
+- name: copy index.html
+  template:
+    src: apacheindex
+    dest: /var/www/index.html
+  notify: start apache
+
+- name: create /temp/test
+  file:
+    path: /tmp/test
+    owner: ec2-user
+    group: ec2-user
+    state: directory
+    mode: 777
+  when: ansible_distribution == 'RedHat'
+
+- name: create /temp/test
+  file:
+    path: /tmp/test
+    owner: ubuntu
+    group: ubuntu
+    state: directory
+    mode: 777
+  when: ansible_distribution == 'Ubuntu'

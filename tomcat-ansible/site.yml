@@ -1,0 +1,14 @@
+---
+- name: tomcat deployment
+  hosts: tomcat_svrs 
+  become: yes
+  become_method: sudo 
+  roles:
+    - tomcat
+
+- name: apache deployment
+  hosts: web_svrs
+  become: yes
+  become_method: sudo
+  roles:
+    - httpd
